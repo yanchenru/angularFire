@@ -13,9 +13,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 //import { Firebase } from '@ionic-native/firebase/ngx';
 //import { BackgroundGeolocation} from '@ionic-native/background-geolocation';
-// import { AngularFireModule } from '@angular/fire';
-// import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
-// import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBf9TgCufrwNYEfPJ6fShLGeMnnFK1hSIM",
@@ -37,9 +37,9 @@ export const firebaseConfig = {
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    // AngularFireModule.initializeApp(firebaseConfig),
-    // AngularFireDatabaseModule,
-    // AngularFireAuthModule
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -54,7 +54,7 @@ export const firebaseConfig = {
     SplashScreen,
     //Firebase,
     //BackgroundGeolocation,
-    //AngularFireDatabase,
+    AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

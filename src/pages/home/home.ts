@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgZone } from '@angular/core';
-//import firebase from 'firebase';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 declare var google;
 
@@ -33,7 +33,8 @@ export class HomePage {
   startTimestamp: any;
   endTimestamp: any;
 
-  constructor(public navCtrl: NavController, private formBuilder: FormBuilder, private zone: NgZone) {    
+  constructor(public navCtrl: NavController, private formBuilder: FormBuilder, private zone: NgZone,
+    private afdb: AngularFireDatabase) {    
     var currentDateTime = new Date();
     //ion-datetime requires ISO format, use getTimezoneOffset to turn local date into XXXX-XX-XX format
     var currentDateTimeISOFormat = new Date(currentDateTime.getTime() - currentDateTime.getTimezoneOffset()*60000).toISOString();
@@ -104,18 +105,19 @@ export class HomePage {
   }
 
   create() {
-    // firebase.database().ref('event/').push().set({
-    //   id: this.location.id + Date.now(),
-    //   latitude: this.location.lat,
-    //   longitude: this.location.lng,
-    //   name: this.location.name,
-    //   proximity: this.eventForm.value.proximity,
-    //   startDate: this.eventForm.value.pickEventStartDate,
-    //   endDate: this.eventForm.value.pickEventEndDate,
-    //   startTime: this.eventForm.value.pickEventStartTime,
-    //   endTime: this.eventForm.value.pickEventEndTime,
-    //   startTimestamp: this.startTimestamp,
-    //   endTimestamp: this.endTimestamp,
-    // });
+    console.log('add data');
+    this.afdb.database.ref('event/').push().set({
+      id: this.location.id + Date.now(),
+      latitude: this.location.lat,
+      longitude: this.location.lng,
+      name: this.location.name,
+      proximity: this.eventForm.value.proximity,
+      startDate: this.eventForm.value.pickEventStartDate,
+      endDate: this.eventForm.value.pickEventEndDate,
+      startTime: this.eventForm.value.pickEventStartTime,
+      endTime: this.eventForm.value.pickEventEndTime,
+      startTimestamp: this.startTimestamp,
+      endTimestamp: this.endTimestamp,
+    });
   }
 }
