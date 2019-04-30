@@ -1,0 +1,7 @@
+{
+  "name": "angularFire",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
