@@ -11,6 +11,21 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+//import { Firebase } from '@ionic-native/firebase/ngx';
+//import { BackgroundGeolocation} from '@ionic-native/background-geolocation';
+// import { AngularFireModule } from '@angular/fire';
+// import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
+// import { AngularFireAuthModule } from '@angular/fire/auth';
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyBf9TgCufrwNYEfPJ6fShLGeMnnFK1hSIM",
+  authDomain: "ionic-214905.firebaseapp.com",
+  databaseURL: "https://ionic-214905.firebaseio.com",
+  projectId: "ionic-214905",
+  storageBucket: "ionic-214905.appspot.com",
+  messagingSenderId: "121679175196"
+};
+
 @NgModule({
   declarations: [
     MyApp,
@@ -21,7 +36,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    // AngularFireModule.initializeApp(firebaseConfig),
+    // AngularFireDatabaseModule,
+    // AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -34,6 +52,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
+    //Firebase,
+    //BackgroundGeolocation,
+    //AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
