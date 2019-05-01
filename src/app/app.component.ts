@@ -53,11 +53,14 @@ export class MyApp {
     });
 
     const config: BackgroundGeolocationConfig = {
-      desiredAccuracy: 10,
-      stationaryRadius: 20,
-      distanceFilter: 30,
+      desiredAccuracy: 0,
+      stationaryRadius: 1,
+      distanceFilter: 1,
       debug: true, //  enable this hear sounds for background-geolocation life-cycle.
       stopOnTerminate: false, // enable this to clear background location settings when the app terminates
+      interval: 1000,
+      fastestInterval: 1000,
+      activitiesInterval: 1000,
     };
 
     this.backgroundGeolocation.configure(config)
