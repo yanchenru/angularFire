@@ -11,8 +11,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-//import { Firebase } from '@ionic-native/firebase/ngx';
-//import { BackgroundGeolocation} from '@ionic-native/background-geolocation';
+import { BackgroundGeolocation} from '@ionic-native/background-geolocation';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -52,8 +51,7 @@ export const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
-    //Firebase,
-    //BackgroundGeolocation,
+    BackgroundGeolocation,
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

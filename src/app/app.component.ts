@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs/Observable';
+import { BackgroundGeolocationEvents, BackgroundGeolocation, BackgroundGeolocationConfig, BackgroundGeolocationResponse } from '@ionic-native/background-geolocation';
 
 @Component({
   templateUrl: 'app.html'
@@ -15,7 +16,8 @@ export class MyApp {
 
   events: Observable<any[]>;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private afdb: AngularFireDatabase) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private afdb: AngularFireDatabase,
+    private backgroundGeolocation: BackgroundGeolocation) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -46,8 +48,37 @@ export class MyApp {
     // this.events.subscribe(event=>{
     //   console.log(event);
     // })
-    this.events.forEach(event=>{
+    this.events.forEach(event => {
       console.log(event);
-    })      
+    });
+
+    const config: BackgroundGeolocationConfig = {
+      desiredAccuracy: 10,
+      stationaryRadius: 20,
+      distanceFilter: 30,
+      debug: true, //  enable this hear sounds for background-geolocation life-cycle.
+      stopOnTerminate: false, // enable this to clear background location settings when the app terminates
+    };
+
+    this.backgroundGeolocation.configure(config)
+      .then(() => {
+
+        this.backgroundGeolocation.on(BackgroundGeolocationEvents.location).subscribe((location: BackgroundGeolocationResponse) => {
+
+          console.log(location.latitude);
+          console.log(location.longitude);
+
+
+          // IMPORTANT:  You must execute the finish method here to inform the native plugin that you're finished,
+          // and the background-task may be completed.  You must do this regardless if your operations are successful or not.
+          // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
+          this.backgroundGeolocation.finish(); // FOR IOS ONLY
+        });
+
+      });
+
+    // start recording location
+    this.backgroundGeolocation.start();
+
   }
 }
