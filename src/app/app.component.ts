@@ -34,7 +34,7 @@ export class MyApp {
     // eventRef.orderByChild("endTimestamp").startAt(Date.now()).on('value', function (snapshot) {
     //   self.events = snapshot;
     // });
-    this.events = this.afdb.list('events/').valueChanges();
+    this.events = this.afdb.list('events', ref=>ref.orderByChild('endTimestamp').startAt(Date.now())).valueChanges();
     console.log(this.events);
     //update rxjs 'npm install rxjs@6.0.0 --save' to make it run
     this.events.subscribe(event => {
