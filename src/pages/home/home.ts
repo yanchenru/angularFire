@@ -105,19 +105,31 @@ export class HomePage {
   }
 
   create() {
-    console.log('add data');
-    this.afdb.database.ref('event/').push().set({
-      id: this.location.id + Date.now(),
-      latitude: this.location.lat,
-      longitude: this.location.lng,
-      name: this.location.name,
-      proximity: this.eventForm.value.proximity,
-      startDate: this.eventForm.value.pickEventStartDate,
-      endDate: this.eventForm.value.pickEventEndDate,
-      startTime: this.eventForm.value.pickEventStartTime,
-      endTime: this.eventForm.value.pickEventEndTime,
-      startTimestamp: this.startTimestamp,
-      endTimestamp: this.endTimestamp,
-    });
+    // this.afdb.database.ref('event/').push().set({
+    //   id: this.location.id + Date.now(),
+    //   latitude: this.location.lat,
+    //   longitude: this.location.lng,
+    //   name: this.location.name,
+    //   proximity: this.eventForm.value.proximity,
+    //   startDate: this.eventForm.value.pickEventStartDate,
+    //   endDate: this.eventForm.value.pickEventEndDate,
+    //   startTime: this.eventForm.value.pickEventStartTime,
+    //   endTime: this.eventForm.value.pickEventEndTime,
+    //   startTimestamp: this.startTimestamp,
+    //   endTimestamp: this.endTimestamp,
+    // });
+    this.afdb.list('events').push({
+        id: this.location.id + Date.now(),
+        latitude: this.location.lat,
+        longitude: this.location.lng,
+        name: this.location.name,
+        proximity: this.eventForm.value.proximity,
+        startDate: this.eventForm.value.pickEventStartDate,
+        endDate: this.eventForm.value.pickEventEndDate,
+        startTime: this.eventForm.value.pickEventStartTime,
+        endTime: this.eventForm.value.pickEventEndTime,
+        startTimestamp: this.startTimestamp,
+        endTimestamp: this.endTimestamp,
+      })
   }
 }
