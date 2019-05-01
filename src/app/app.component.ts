@@ -37,18 +37,17 @@ export class MyApp {
     this.events = this.afdb.list('events/').valueChanges();
     console.log(this.events);
     //update rxjs 'npm install rxjs@6.0.0 --save' to make it run
-    this.events.subscribe(event => {
-      console.log(event);
-    });
+    // this.events.subscribe(event => {
+    //   console.log(event);
+    // });
   }
-
 
   startBgGeolocation() {
     // this.events.subscribe(event=>{
     //   console.log(event);
     // })
-    // this.events.forEach(event=>{
-    //   console.log(event);
-    // })      
+    this.events.forEach(event=>{
+      console.log(event);
+    })      
   }
 }
