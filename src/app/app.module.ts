@@ -15,6 +15,7 @@ import { BackgroundGeolocation} from '@ionic-native/background-geolocation';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBf9TgCufrwNYEfPJ6fShLGeMnnFK1hSIM",
@@ -53,6 +54,7 @@ export const firebaseConfig = {
     SplashScreen,
     BackgroundGeolocation,
     AngularFireDatabase,
+    LocalNotifications,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
