@@ -60,7 +60,7 @@ export class MyApp {
       stopOnTerminate: false, // enable this to clear background location settings when the app terminates
       interval: 1000,
       fastestInterval: 1000,
-      activitiesInterval: 1000,
+      activitiesInterval: 1000
     };
 
     this.backgroundGeolocation.configure(config)
