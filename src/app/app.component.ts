@@ -45,10 +45,9 @@ export class MyApp {
     var self = this;
     var preDis = {};
     const config: BackgroundGeolocationConfig = {
-      desiredAccuracy: 0,
+      desiredAccuracy: 10,
       stationaryRadius: 1,
       distanceFilter: 1,
-      debug: false,
       interval: 2000,
       fastestInterval: 2000,
       activitiesInterval: 2000
@@ -59,6 +58,7 @@ export class MyApp {
           if (this.eventsArray != null && this.eventsArray != undefined) {
             this.eventsArray.forEach(function (event) {
                 let distance = self.calculateDistance(event.latitude, location.latitude, event.longitude, location.longitude);
+                console.log(distance);
                 if (preDis[event.id] == null) {
                   preDis[event.id] = event.proximity;
                 }
@@ -72,7 +72,7 @@ export class MyApp {
           // IMPORTANT:  You must execute the finish method here to inform the native plugin that you're finished,
           // and the background-task may be completed.  You must do this regardless if your operations are successful or not.
           // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
-          this.backgroundGeolocation.finish(); // FOR IOS ONLY
+          //this.backgroundGeolocation.finish(); // FOR IOS ONLY
         });
       });
     this.backgroundGeolocation.start();
